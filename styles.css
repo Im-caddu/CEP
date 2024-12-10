@@ -1,0 +1,93 @@
+/* Layout geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    margin: 20px;
+}
+
+/* Título */
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Grupos de entrada */
+.input-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Campos de entrada */
+.input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    min-width: 150px;
+    box-sizing: border-box;
+}
+
+/* Botão de busca */
+.button {
+    background-color: #3273dc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: #275ba0;
+}
+
+/* Notificações (resultados) */
+.notification {
+    background-color: #fff7e6;
+    border: 1px solid #ffd966;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 15px; /* Espaço entre os blocos de resultados */
+}
+
+.notification p {
+    margin: 5px 0;
+}
+
+/* Mensagem de erro */
+.notification.is-danger {
+    background-color: #fcebea;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+/* Espaçamento adicional entre seções */
+.spacer {
+    margin: 30px 0;
+}

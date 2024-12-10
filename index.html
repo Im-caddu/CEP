@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta CEP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="app">
+        <h3 class="title">Consulta de CEP</h3>
+
+        <!-- Busca por CEP -->
+        <div class="input-group">
+            <input
+                type="text"
+                v-model="cep"
+                placeholder="Digite o CEP aqui"
+                class="input"
+                maxlength="8"
+            >
+            <button class="button" @click="searchCep">Buscar</button>
+        </div>
+
+        <div class="notification" v-if="data">
+            <div class="cep-data">
+                <p><strong>CEP:</strong> {{ data.cep }}</p>
+                <p><strong>Logradouro:</strong> {{ data.logradouro }}</p>
+                <p><strong>Complemento:</strong> {{ data.complemento || 'N/A' }}</p>
+                <p><strong>Bairro:</strong> {{ data.bairro }}</p>
+                <p><strong>Localidade:</strong> {{ data.localidade }}</p>
+                <p><strong>UF:</strong> {{ data.uf }}</p>
+                <p><strong>DDD:</strong> {{ data.ddd }}</p>
+            </div>
+        </div>
+
+        <!-- Espaço maior entre as buscas -->
+        <div class="spacer"></div>
+
+        <!-- Busca por Estado, Cidade e Rua -->
+        <div class="input-group">
+            <select v-model="state" class="input">
+                <option value="PR">Paraná</option>
+                <!-- Adicionar mais estados aqui no futuro -->
+            </select>
+            <input
+                type="text"
+                v-model="city"
+                placeholder="Digite a cidade"
+                class="input"
+            >
+            <input
+                type="text"
+                v-model="street"
+                placeholder="Digite a rua"
+                class="input"
+            >
+            <button class="button" @click="searchByAddress">Buscar</button>
+        </div>
+
+        <div class="notification" v-if="addressResults && addressResults.length > 0">
+            <div v-for="result in addressResults" :key="result.cep" class="notification">
+                <p><strong>CEP:</strong> {{ result.cep }}</p>
+                <p><strong>Logradouro:</strong> {{ result.logradouro || 'N/A' }}</p>
+                <p><strong>Complemento:</strong> {{ result.complemento || 'N/A' }}</p>
+                <p><strong>Bairro:</strong> {{ result.bairro || 'N/A' }}</p>
+                <p><strong>Localidade:</strong> {{ result.localidade }}</p>
+                <p><strong>UF:</strong> {{ result.uf }}</p>
+                <p><strong>DDD:</strong> {{ result.ddd }}</p>
+            </div>
+        </div>
+        
+
+        <div class="notification is-danger" v-if="addressResults && addressResults.length === 0">
+            <p><strong>Erro:</strong> Nenhum endereço encontrado.</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
