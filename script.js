@@ -9,31 +9,31 @@ new Vue({
         addressResults: null
     },
     methods: {
-        // Busca CEP por número
+        // Busca CEP
         searchCep() {
             if (this.cep.length === 8 && /^\d+$/.test(this.cep)) {
                 axios.get(`https://viacep.com.br/ws/${this.cep}/json/`)
                     .then(response => this.data = response.data)
                     .catch(error => console.log(error));
             } else {
-                alert('Por favor, digite um CEP válido com 8 dígitos.');
+                alert('Por favor, digite um CEP válido!');
                 this.data = null;
             }
         },
 
-        // Busca endereço por estado, cidade e rua
+        // Busca CEP por cidade
         searchByAddress() {
             if (this.state && this.city && this.street) {
                 axios.get(`https://viacep.com.br/ws/${this.state}/${this.city}/${this.street}/json/`)
                     .then(response => {
                         this.addressResults = response.data;
                         if (this.addressResults.length === 0) {
-                            alert('Nenhum endereço encontrado para os critérios informados.');
+                            alert('Nenhum endereço encontrado!');
                         }
                     })
                     .catch(error => console.log(error));
             } else {
-                alert('Por favor, preencha todos os campos para buscar o endereço.');
+                alert('Por favor, preencha todos os campos!');
                 this.addressResults = null;
             }
         }
